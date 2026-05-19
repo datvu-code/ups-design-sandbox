@@ -56,6 +56,22 @@ export interface OrderRecipient {
   province: string
 }
 
+export type OrderPageTab = 'marketplace' | 'manual' | 'pos' | 'mine' | 'history'
+
+export type OrderDateFilterType = 'created_at' | 'updated_at' | 'delivered_at'
+
+export type OrderSearchType = 'order_id' | 'product_name' | 'recipient_name' | 'tracking_number'
+
+export interface OrderFilterState {
+  dateFilterType: OrderDateFilterType
+  dateRange: [string, string] | null
+  platform: string | null
+  shop: string | null
+  searchType: OrderSearchType
+  searchQuery: string
+  warehouse: string | null
+}
+
 export interface Order {
   id: string
   shopName: string

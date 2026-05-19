@@ -1,4 +1,4 @@
-import { Flex, Typography, theme } from 'antd'
+import { Badge, Flex, Typography, theme } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons'
 
 interface OrderSyncStatusProps {
@@ -10,16 +10,7 @@ export function OrderSyncStatus({ lastSyncTime, onRefresh }: OrderSyncStatusProp
   const { token } = theme.useToken()
   return (
     <Flex align="center" gap={token.marginXS}>
-      <span
-        style={{
-          width: 8,
-          height: 8,
-          borderRadius: '50%',
-          backgroundColor: token.colorSuccess,
-          display: 'inline-block',
-          flexShrink: 0,
-        }}
-      />
+      <Badge status="success" />
       <Typography.Text type="secondary">
         Tất cả đơn hàng đã được cập nhật
       </Typography.Text>

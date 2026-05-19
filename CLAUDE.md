@@ -66,6 +66,27 @@ src/
 - Never fetch data inside components — receive via props or `mock-data/`
 - Never invent prop names — use types from the module's `types/index.ts`
 
+## src/components/ — shared custom components
+
+Only for custom components that:
+- Wrap, extend, or combine antd components for UpS-specific needs
+- Are used by 2+ modules (rule of two — do not promote speculatively)
+
+Examples of what belongs here:
+- `StatusBadge.tsx` — Tag with UpS-specific status color logic
+- `CopyableId.tsx` — input + copy button for order/product IDs
+- `EmptyState.tsx` — Empty with UpS illustration and messaging
+
+Examples of what does NOT belong here:
+- Raw antd components — import directly from `'antd'`
+- Feature-specific components used only once
+- Components promoted before a second module needs them
+
+When promoting from a module:
+1. Move file to `src/components/`
+2. Update all imports
+3. Add comment: `{/* Promoted from modules/[Module] — used by [A] + [B] */}`
+
 ## Code quality (non-negotiable)
 
 All components must be production-grade, not prototype quality:
