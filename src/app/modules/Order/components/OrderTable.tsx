@@ -84,7 +84,7 @@ export function OrderTable({
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ minWidth: TABLE_MIN_WIDTH }}>
+      <div style={{ minWidth: TABLE_MIN_WIDTH, paddingBottom: token.margin }}>
         <OrderTableHeader
           allSelected={allSelected}
           indeterminate={indeterminate}
