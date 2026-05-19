@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { theme } from 'antd'
 import { OrderRowHeader } from './OrderRowHeader'
 import { OrderRowBody } from './OrderRowBody'
@@ -12,13 +13,19 @@ interface OrderRowProps {
 
 export function OrderRow({ order, selected, onSelect, onAction }: OrderRowProps) {
   const { token } = theme.useToken()
+  const [hovered, setHovered] = useState(false)
+
   return (
     <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
-        border: `1px solid ${token.colorBorderSecondary}`,
+        border: `1px solid ${hovered ? token.colorBorder : token.colorBorderSecondary}`,
         borderRadius: token.borderRadiusLG,
         overflow: 'hidden',
-        marginBottom: token.marginSM,
+        marginBottom: token.margin,
+        transition: 'border-color 0.15s ease',
+        cursor: 'default',
       }}
     >
       <OrderRowHeader

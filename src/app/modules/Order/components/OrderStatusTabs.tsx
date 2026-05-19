@@ -1,5 +1,5 @@
 import { Tabs } from 'antd'
-import { WarningOutlined } from '@ant-design/icons'
+import { IconAlertTriangle } from '@tabler/icons-react'
 import type { OrderStatus, OrderStatusTab } from '../types'
 
 interface OrderStatusTabsProps {
@@ -13,7 +13,7 @@ function tabLabel(tab: OrderStatusTab): React.ReactNode {
   if (tab.warning) {
     return (
       <span>
-        <WarningOutlined style={{ marginRight: 4 }} />
+        <IconAlertTriangle size={14} style={{ marginRight: 4, verticalAlign: 'middle' }} />
         {tab.label}
         {countText}
       </span>

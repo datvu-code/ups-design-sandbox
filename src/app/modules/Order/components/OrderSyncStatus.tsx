@@ -1,5 +1,5 @@
 import { Badge, Flex, Typography, theme } from 'antd'
-import { ReloadOutlined } from '@ant-design/icons'
+import { IconRefresh } from '@tabler/icons-react'
 
 interface OrderSyncStatusProps {
   lastSyncTime: string
@@ -16,8 +16,10 @@ export function OrderSyncStatus({ lastSyncTime, onRefresh }: OrderSyncStatusProp
       </Typography.Text>
       <Typography.Text type="secondary">•</Typography.Text>
       <Typography.Text type="secondary">{lastSyncTime}</Typography.Text>
-      <ReloadOutlined
-        style={{ color: token.colorTextTertiary, cursor: 'pointer' }}
+      <IconRefresh
+        size={14}
+        color={token.colorTextTertiary}
+        style={{ cursor: 'pointer' }}
         onClick={onRefresh}
       />
     </Flex>

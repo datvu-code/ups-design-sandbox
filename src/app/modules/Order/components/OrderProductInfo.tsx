@@ -1,5 +1,5 @@
 import { Avatar, Flex, Typography, theme } from 'antd'
-import { ShoppingOutlined } from '@ant-design/icons'
+import { IconShoppingBag } from '@tabler/icons-react'
 import type { OrderItem } from '../types'
 
 interface OrderProductInfoProps {
@@ -14,7 +14,7 @@ export function OrderProductInfo({ item }: OrderProductInfoProps) {
         shape="square"
         size={56}
         src={item.thumbnail || undefined}
-        icon={!item.thumbnail ? <ShoppingOutlined /> : undefined}
+        icon={!item.thumbnail ? <IconShoppingBag size={24} /> : undefined}
         style={{ flexShrink: 0 }}
       />
       <Flex vertical gap={2}>

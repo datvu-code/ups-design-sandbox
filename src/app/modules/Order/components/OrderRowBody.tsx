@@ -51,7 +51,7 @@ export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBo
       </Flex>
 
       {/* Tổng tiền */}
-      <Flex vertical gap={4} style={cell(1)}>
+      <Flex vertical gap={token.paddingXXS} style={cell(1)}>
         {order.items.map((item, idx) => (
           <Typography.Text key={idx} strong>
             {formatAmount(item.totalAmount)}
@@ -81,7 +81,7 @@ export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBo
       </Flex>
 
       {/* Thao tác */}
-      <Flex justify="center" style={cell(6)}>
+      <Flex justify="flex-start" style={cell(6)}>
         <OrderRowAction orderId={order.id} onAction={onAction} />
       </Flex>
     </Flex>

@@ -1,5 +1,5 @@
 import { Button, Dropdown } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { IconChevronDown } from '@tabler/icons-react'
 import type { MenuProps } from 'antd'
 
 const rowActionItems: MenuProps['items'] = [
@@ -20,8 +20,8 @@ export function OrderRowAction({ orderId, onAction }: OrderRowActionProps) {
   }
   return (
     <Dropdown menu={{ items: rowActionItems, onClick: handleMenuClick }} trigger={['click']}>
-      <Button icon={<DownOutlined />} iconPosition="end">
-        Chọn
+      <Button>
+        Chọn <IconChevronDown size={14} />
       </Button>
     </Dropdown>
   )

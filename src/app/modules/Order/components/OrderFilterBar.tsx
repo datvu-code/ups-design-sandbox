@@ -1,5 +1,7 @@
 import { Button, Col, DatePicker, Flex, Input, Row, Select, theme } from 'antd'
-import { ControlOutlined, SearchOutlined } from '@ant-design/icons'
+import { IconAdjustmentsHorizontal, IconChevronDown, IconSearch } from '@tabler/icons-react'
+
+const chevron = <IconChevronDown size={14} />
 import type { OrderDateFilterType, OrderFilterState, OrderSearchType } from '../types'
 
 const dateFilterOptions = [
@@ -48,6 +50,7 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
               value={filter.dateFilterType}
               options={dateFilterOptions}
               onChange={(v) => onFilterChange({ dateFilterType: v as OrderDateFilterType })}
+              suffixIcon={chevron}
               style={{ width: 220, borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
             />
             <DatePicker.RangePicker
@@ -69,6 +72,7 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
             options={platformOptions}
             placeholder="Chọn sàn"
             allowClear
+            suffixIcon={chevron}
             onChange={(v) => onFilterChange({ platform: v ?? null })}
             style={{ width: '100%' }}
           />
@@ -79,6 +83,7 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
             options={shopOptions}
             placeholder="Chọn gian hàng"
             allowClear
+            suffixIcon={chevron}
             onChange={(v) => onFilterChange({ shop: v ?? null })}
             style={{ width: '100%' }}
           />
@@ -93,12 +98,13 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
               value={filter.searchType}
               options={searchTypeOptions}
               onChange={(v) => onFilterChange({ searchType: v as OrderSearchType })}
+              suffixIcon={chevron}
               style={{ width: 160, borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
             />
             <Input
               value={filter.searchQuery}
               placeholder="Tìm đơn hàng"
-              prefix={<SearchOutlined style={{ color: token.colorTextTertiary }} />}
+              prefix={<IconSearch size={16} color={token.colorTextTertiary} />}
               onChange={(e) => onFilterChange({ searchQuery: e.target.value })}
               style={{ flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
             />
@@ -110,12 +116,13 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
             options={warehouseOptions}
             placeholder="Chọn kho"
             allowClear
+            suffixIcon={chevron}
             onChange={(v) => onFilterChange({ warehouse: v ?? null })}
             style={{ width: '100%' }}
           />
         </Col>
         <Col flex="none">
-          <Button icon={<ControlOutlined />} onClick={onAdvancedFilter}>
+          <Button icon={<IconAdjustmentsHorizontal size={16} />} onClick={onAdvancedFilter}>
             Lọc nâng cao
           </Button>
         </Col>

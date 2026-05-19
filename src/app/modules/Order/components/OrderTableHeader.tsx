@@ -23,11 +23,13 @@ export function OrderTableHeader({
       }}
     >
       {ORDER_TABLE_COLUMNS.map((col, idx) => {
+        const isLast = idx === ORDER_TABLE_COLUMNS.length - 1
         const cellStyle = {
           flex: col.flex,
           minWidth: col.minWidth,
-          paddingRight: idx < ORDER_TABLE_COLUMNS.length - 1 ? token.paddingXS : 0,
+          paddingRight: isLast ? 0 : token.paddingXS,
         }
+
         if (idx === 0) {
           return (
             <Flex key={col.key} align="center" gap={token.marginXS} style={cellStyle}>
@@ -43,12 +45,18 @@ export function OrderTableHeader({
             </Flex>
           )
         }
+
         return (
-          <div key={col.key} style={cellStyle}>
+          <Flex
+            key={col.key}
+            justify="flex-start"
+            align="center"
+            style={cellStyle}
+          >
             <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
               {col.label}
             </Typography.Text>
-          </div>
+          </Flex>
         )
       })}
     </Flex>

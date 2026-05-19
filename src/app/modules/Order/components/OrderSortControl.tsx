@@ -1,5 +1,7 @@
 import { Button, Flex, Select, Typography, theme } from 'antd'
-import { SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
+import { IconChevronDown, IconSortAscending, IconSortDescending } from '@tabler/icons-react'
+
+const chevron = <IconChevronDown size={14} />
 
 type SortDirection = 'asc' | 'desc'
 
@@ -30,17 +32,24 @@ export function OrderSortControl({
         value={sortBy}
         options={sortOptions}
         onChange={onSortByChange}
+        suffixIcon={chevron}
         style={{ width: 200 }}
       />
       <Button
-        type={sortDirection === 'asc' ? 'primary' : 'default'}
-        icon={<SortAscendingOutlined />}
+        type="default"
+        icon={<IconSortAscending size={16} />}
         onClick={() => onDirectionChange('asc')}
+        style={sortDirection === 'asc'
+          ? { borderColor: token.colorPrimary, color: token.colorPrimary }
+          : undefined}
       />
       <Button
-        type={sortDirection === 'desc' ? 'primary' : 'default'}
-        icon={<SortDescendingOutlined />}
+        type="default"
+        icon={<IconSortDescending size={16} />}
         onClick={() => onDirectionChange('desc')}
+        style={sortDirection === 'desc'
+          ? { borderColor: token.colorPrimary, color: token.colorPrimary }
+          : undefined}
       />
     </Flex>
   )

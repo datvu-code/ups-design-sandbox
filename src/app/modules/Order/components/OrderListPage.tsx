@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { theme } from 'antd'
+import { message, theme } from 'antd'
 import { OrderPageTabs } from './OrderPageTabs'
 import { OrderFilterBar } from './OrderFilterBar'
 import { OrderListToolbar } from './OrderListToolbar'
@@ -40,7 +40,7 @@ export function OrderListPage() {
     backgroundColor: token.colorBgContainer,
     borderRadius: token.borderRadiusLG,
     boxShadow: token.boxShadowTertiary,
-    marginBottom: token.marginSM,
+    marginBottom: token.margin,
   }
 
   return (
@@ -53,7 +53,7 @@ export function OrderListPage() {
         <OrderFilterBar
           filter={filter}
           onFilterChange={handleFilterChange}
-          onAdvancedFilter={() => {}}
+          onAdvancedFilter={() => message.info('Tính năng đang phát triển')}
         />
       </div>
 

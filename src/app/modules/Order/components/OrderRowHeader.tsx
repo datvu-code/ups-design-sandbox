@@ -1,5 +1,5 @@
 import { Button, Flex, Tag, Typography, theme, message } from 'antd'
-import { ArrowRightOutlined, CopyOutlined } from '@ant-design/icons'
+import { IconArrowRight, IconCopy } from '@tabler/icons-react'
 import type { Order, OrderBadgeStatus } from '../types'
 
 const badgeConfig: Record<OrderBadgeStatus, { color: string; label: string }> = {
@@ -38,14 +38,14 @@ export function OrderRowHeader({ order }: OrderRowHeaderProps) {
       }}
     >
       <Flex align="center" gap={token.marginXS}>
-        <ArrowRightOutlined style={{ color: token.colorTextTertiary, fontSize: 12 }} />
+        <IconArrowRight size={14} color={token.colorTextTertiary} />
         <Typography.Text strong>{order.shopName}</Typography.Text>
         <Typography.Text type="secondary">|</Typography.Text>
         <Typography.Text type="secondary">Mã đơn hàng: {order.id}</Typography.Text>
         <Button
           type="text"
           size="small"
-          icon={<CopyOutlined />}
+          icon={<IconCopy size={14} />}
           onClick={handleCopyId}
           style={{ color: token.colorTextTertiary }}
         />

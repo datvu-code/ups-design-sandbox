@@ -96,6 +96,14 @@ All components must be production-grade, not prototype quality:
 - **Styles**: no inline styles — use the antd token system via `ConfigProvider` only
 - **antd usage**: follow patterns in `resources/ant-design-patterns.md`; never build from scratch what antd provides
 
+## Icons
+
+This project uses `@tabler/icons-react`. Do not import from `@ant-design/icons`.
+
+- Use Tabler icons for all explicit icon usage
+- antd components that embed icons internally (e.g. `Select` suffixIcon, `DatePicker` suffixIcon) must be overridden via the component's own prop — replacing the import is not enough
+- Always pass `suffixIcon={<IconChevronDown size={14} />}` to every `Select` component
+
 ## Ant Design
 
 - Apply theme via `ConfigProvider` in `ThemeContext` — never hardcode colors

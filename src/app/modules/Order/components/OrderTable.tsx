@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Alert, Empty, Flex, Spin, theme } from 'antd'
+import { Alert, Empty, Flex, Skeleton, theme } from 'antd'
 import { OrderRow } from './OrderRow'
 import { OrderTableHeader } from './OrderTableHeader'
 import { TABLE_MIN_WIDTH } from '../utils/tableColumns'
@@ -40,8 +40,20 @@ export function OrderTable({
 
   if (loading) {
     return (
-      <Flex justify="center" align="center" style={{ padding: token.paddingLG * 3 }}>
-        <Spin size="large" />
+      <Flex vertical gap={token.margin}>
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            style={{
+              backgroundColor: token.colorBgContainer,
+              borderRadius: token.borderRadiusLG,
+              padding: token.paddingLG,
+              border: `1px solid ${token.colorBorderSecondary}`,
+            }}
+          >
+            <Skeleton active paragraph={{ rows: 3 }} />
+          </div>
+        ))}
       </Flex>
     )
   }

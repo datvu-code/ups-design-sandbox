@@ -1,5 +1,5 @@
 import { Button, Dropdown, Flex, Typography, theme } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { IconChevronDown } from '@tabler/icons-react'
 import { OrderSortControl } from './OrderSortControl'
 import type { MenuProps } from 'antd'
 
@@ -34,9 +34,9 @@ export function OrderBulkActionBar({
       style={{ padding: `${token.paddingXS}px ${token.paddingLG}px` }}
     >
       <Flex align="center" gap={token.marginSM}>
-        <Dropdown menu={{ items: bulkActionItems }} trigger={['click']}>
-          <Button icon={<DownOutlined />} iconPosition="end">
-            Thao tác hàng loạt
+        <Dropdown menu={{ items: bulkActionItems }} trigger={['click']} disabled={selectedCount === 0}>
+          <Button disabled={selectedCount === 0}>
+            Thao tác hàng loạt <IconChevronDown size={14} />
           </Button>
         </Dropdown>
         <Typography.Text type="secondary">

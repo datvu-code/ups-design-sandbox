@@ -1,5 +1,5 @@
 import { Button, Dropdown, Flex } from 'antd'
-import { DownOutlined, HistoryOutlined } from '@ant-design/icons'
+import { IconChevronDown, IconHistory } from '@tabler/icons-react'
 import type { MenuProps } from 'antd'
 
 const exportOrderItems: MenuProps['items'] = [
@@ -20,16 +20,16 @@ export function OrderExportActions({ onViewHistory }: OrderExportActionsProps) {
   return (
     <Flex align="center" gap={8}>
       <Dropdown menu={{ items: exportOrderItems }} trigger={['click']}>
-        <Button icon={<DownOutlined />} iconPosition="end">
-          Xuất đơn hàng
+        <Button>
+          Xuất đơn hàng <IconChevronDown size={14} />
         </Button>
       </Dropdown>
       <Dropdown menu={{ items: exportTransactionItems }} trigger={['click']}>
-        <Button icon={<DownOutlined />} iconPosition="end">
-          Xuất giao dịch thanh toán
+        <Button>
+          Xuất giao dịch thanh toán <IconChevronDown size={14} />
         </Button>
       </Dropdown>
-      <Button icon={<HistoryOutlined />} onClick={onViewHistory} />
+      <Button icon={<IconHistory size={16} />} onClick={onViewHistory} />
     </Flex>
   )
 }

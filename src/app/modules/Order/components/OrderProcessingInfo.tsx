@@ -1,5 +1,5 @@
 import { Flex, Typography, Tooltip, theme } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons'
+import { IconInfoCircle } from '@tabler/icons-react'
 import type { OrderProcessing } from '../types'
 
 interface OrderProcessingInfoProps {
@@ -23,7 +23,7 @@ export function OrderProcessingInfo({ processing }: OrderProcessingInfoProps) {
             Giao trước {processing.deliverBefore}
           </Typography.Text>
           <Tooltip title="Thời hạn giao hàng cho khách">
-            <InfoCircleOutlined style={{ color: token.colorTextTertiary, fontSize: 12 }} />
+            <IconInfoCircle size={14} color={token.colorTextTertiary} />
           </Tooltip>
         </Flex>
       )}
@@ -33,7 +33,7 @@ export function OrderProcessingInfo({ processing }: OrderProcessingInfoProps) {
             CBH trước {processing.cbhBefore ?? '--'}
           </Typography.Text>
           <Tooltip title="Thời hạn cập nhật CBH">
-            <InfoCircleOutlined style={{ color: token.colorTextTertiary, fontSize: 12 }} />
+            <IconInfoCircle size={14} color={token.colorTextTertiary} />
           </Tooltip>
         </Flex>
       )}
