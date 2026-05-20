@@ -1,0 +1,12 @@
+.card {
+  border: var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary);
+  border-radius: var(--ant-border-radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--ant-margin);
+  transition: border-color 0.15s ease;
+  cursor: default;
+}
+
+.card:hover {
+  border-color: var(--ant-color-border);
+}

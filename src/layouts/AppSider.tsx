@@ -1,17 +1,19 @@
 import { Layout, Menu } from 'antd'
-import { useState } from 'react'
 import { navItems } from './navConfig'
 
-export function AppSider() {
-  const [selected, setSelected] = useState('order')
+interface AppSiderProps {
+  selected: string
+  onSelect: (key: string) => void
+}
 
+export function AppSider({ selected, onSelect }: AppSiderProps) {
   return (
     <Layout.Sider width={220}>
       <Menu
         mode="inline"
         selectedKeys={[selected]}
         items={navItems}
-        onClick={({ key }) => setSelected(key)}
+        onClick={({ key }) => onSelect(key)}
         style={{ height: '100%' }}
       />
     </Layout.Sider>

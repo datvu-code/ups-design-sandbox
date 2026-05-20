@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Alert, Empty, Flex, Skeleton, theme } from 'antd'
+import { Alert, Empty, Flex, Skeleton } from 'antd'
 import { OrderRow } from './OrderRow'
 import { OrderTableHeader } from './OrderTableHeader'
 import { TABLE_MIN_WIDTH } from '../utils/tableColumns'
@@ -20,7 +20,6 @@ export function OrderTable({
   onAction,
   onSelectionChange,
 }: OrderTableProps) {
-  const { token } = theme.useToken()
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
 
   const handleSelect = (id: string, checked: boolean) => {
@@ -40,15 +39,15 @@ export function OrderTable({
 
   if (loading) {
     return (
-      <Flex vertical gap={token.margin}>
+      <Flex vertical gap={16}>
         {[1, 2, 3].map((i) => (
           <div
             key={i}
             style={{
-              backgroundColor: token.colorBgContainer,
-              borderRadius: token.borderRadiusLG,
-              padding: token.paddingLG,
-              border: `1px solid ${token.colorBorderSecondary}`,
+              backgroundColor: 'var(--ant-color-bg-container)',
+              borderRadius: 'var(--ant-border-radius-lg)',
+              padding: 'var(--ant-padding-lg)',
+              border: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
             }}
           >
             <Skeleton active paragraph={{ rows: 3 }} />
@@ -65,17 +64,15 @@ export function OrderTable({
         message="Không thể tải danh sách đơn hàng"
         description={error}
         showIcon
-        style={{ margin: token.marginLG }}
       />
     )
   }
 
   if (orders.length === 0) {
     return (
-      <Empty
-        description="Không có đơn hàng nào"
-        style={{ padding: token.paddingLG * 2 }}
-      />
+      <div style={{ padding: 'var(--ant-padding-lg)' }}>
+        <Empty description="Không có đơn hàng nào" />
+      </div>
     )
   }
 
@@ -84,7 +81,7 @@ export function OrderTable({
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ minWidth: TABLE_MIN_WIDTH, paddingBottom: token.margin }}>
+      <div style={{ minWidth: TABLE_MIN_WIDTH, paddingBottom: 16 }}>
         <OrderTableHeader
           allSelected={allSelected}
           indeterminate={indeterminate}

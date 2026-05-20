@@ -1,18 +1,18 @@
-import { Flex, Typography, Tooltip, theme } from 'antd'
+import { Flex, Typography, Tooltip } from 'antd'
 import { IconInfoCircle } from '@tabler/icons-react'
 import type { OrderProcessing } from '../types'
+import styles from './OrderProcessingInfo.module.css'
 
 interface OrderProcessingInfoProps {
   processing: OrderProcessing
 }
 
 export function OrderProcessingInfo({ processing }: OrderProcessingInfoProps) {
-  const { token } = theme.useToken()
   return (
     <Flex vertical gap={4}>
       {processing.deadline && (
         <Typography.Text
-          style={{ color: processing.isOverdue ? token.colorError : token.colorText }}
+          className={processing.isOverdue ? styles.deadlineOverdue : styles.deadline}
         >
           Còn lại: {processing.deadline}
         </Typography.Text>
@@ -23,7 +23,7 @@ export function OrderProcessingInfo({ processing }: OrderProcessingInfoProps) {
             Giao trước {processing.deliverBefore}
           </Typography.Text>
           <Tooltip title="Thời hạn giao hàng cho khách">
-            <IconInfoCircle size={14} color={token.colorTextTertiary} />
+            <IconInfoCircle size={14} className={styles.infoIcon} />
           </Tooltip>
         </Flex>
       )}
@@ -33,7 +33,7 @@ export function OrderProcessingInfo({ processing }: OrderProcessingInfoProps) {
             CBH trước {processing.cbhBefore ?? '--'}
           </Typography.Text>
           <Tooltip title="Thời hạn cập nhật CBH">
-            <IconInfoCircle size={14} color={token.colorTextTertiary} />
+            <IconInfoCircle size={14} className={styles.infoIcon} />
           </Tooltip>
         </Flex>
       )}

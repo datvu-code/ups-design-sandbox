@@ -1,4 +1,4 @@
-import { Badge, Flex, Typography, theme } from 'antd'
+import { Badge, Flex, Typography } from 'antd'
 import { IconRefresh } from '@tabler/icons-react'
 
 interface OrderSyncStatusProps {
@@ -7,9 +7,8 @@ interface OrderSyncStatusProps {
 }
 
 export function OrderSyncStatus({ lastSyncTime, onRefresh }: OrderSyncStatusProps) {
-  const { token } = theme.useToken()
   return (
-    <Flex align="center" gap={token.marginXS}>
+    <Flex align="center" gap={8}>
       <Badge status="success" />
       <Typography.Text type="secondary">
         Tất cả đơn hàng đã được cập nhật
@@ -18,8 +17,7 @@ export function OrderSyncStatus({ lastSyncTime, onRefresh }: OrderSyncStatusProp
       <Typography.Text type="secondary">{lastSyncTime}</Typography.Text>
       <IconRefresh
         size={14}
-        color={token.colorTextTertiary}
-        style={{ cursor: 'pointer' }}
+        style={{ color: 'var(--ant-color-text-tertiary)', cursor: 'pointer' }}
         onClick={onRefresh}
       />
     </Flex>

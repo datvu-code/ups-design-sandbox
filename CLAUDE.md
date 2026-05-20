@@ -93,7 +93,7 @@ All components must be production-grade, not prototype quality:
 
 - **TypeScript**: no `any`, no missing prop types; all props must have explicit interfaces in the module's `types/index.ts`
 - **States**: handle loading, empty, and error states — not just the happy path
-- **Styles**: no inline styles — use the antd token system via `ConfigProvider` only
+- **Styles**: use CSS Modules (`.module.css`) with antd 6 CSS variables (`var(--ant-*)`) for all custom element styling — never use `theme.useToken()` with `style` props
 - **antd usage**: follow patterns in `resources/ant-design-patterns.md`; never build from scratch what antd provides
 
 ## Icons
@@ -104,10 +104,38 @@ This project uses `@tabler/icons-react`. Do not import from `@ant-design/icons`.
 - antd components that embed icons internally (e.g. `Select` suffixIcon, `DatePicker` suffixIcon) must be overridden via the component's own prop — replacing the import is not enough
 - Always pass `suffixIcon={<IconChevronDown size={14} />}` to every `Select` component
 
+## Styling — CSS Modules + antd 6 CSS Variables
+
+antd 6 injects all design tokens as CSS custom properties automatically. Use them in `.module.css` files — no extra library needed.
+
+**Token → CSS variable naming** (camelCase → kebab-case with `--ant-` prefix):
+```
+colorPrimary        → var(--ant-color-primary)
+colorBgContainer    → var(--ant-color-bg-container)
+colorBorderSecondary→ var(--ant-color-border-secondary)
+colorError          → var(--ant-color-error)
+colorText           → var(--ant-color-text)
+colorTextTertiary   → var(--ant-color-text-tertiary)
+padding / paddingLG → var(--ant-padding) / var(--ant-padding-lg)
+margin / marginXS   → var(--ant-margin) / var(--ant-margin-xs)
+borderRadiusLG      → var(--ant-border-radius-lg)
+boxShadowTertiary   → var(--ant-box-shadow-tertiary)
+fontSizeSM          → var(--ant-font-size-sm)
+```
+Spacing tokens include `px` units (e.g. `--ant-padding-lg: 24px`). Colors are hex strings.
+
+**Rules:**
+- Static token values on custom elements → inline `style` with `'var(--ant-*)'` strings
+- No raw values anywhere — borders use all three tokens: `'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)'`
+- Structural sizing on antd components (`width`, `flex`, `borderRadius: 0`) → inline `style` is fine (not token values)
+- Tabler icon `color` → `style={{ color: 'var(--ant-color-text-tertiary)' }}` (no `useToken`)
+- `theme.useToken()` — do not use for styling; only if a token value is needed in JS logic
+- Hover/focus/active states, transitions, conditional state classes → `.module.css` (CSS can't be inline)
+- Create a `.module.css` file **only** when pseudo-classes or reusable state classes are needed — not for every component
+
 ## Ant Design
 
 - Apply theme via `ConfigProvider` in `ThemeContext` — never hardcode colors
-- Use the Ant Design token system for all spacing, color, and typography decisions
 - Reference `resources/ant-design-patterns.md` for correct component usage
 
 ## Screen capture workflow

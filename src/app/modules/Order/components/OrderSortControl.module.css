@@ -1,0 +1,4 @@
+.btnActive {
+  border-color: var(--ant-color-primary) !important;
+  color: var(--ant-color-primary) !important;
+}

@@ -1,4 +1,4 @@
-import { Avatar, Flex, Typography, theme } from 'antd'
+import { Avatar, Flex, Typography } from 'antd'
 import { IconShoppingBag } from '@tabler/icons-react'
 import type { OrderItem } from '../types'
 
@@ -7,9 +7,8 @@ interface OrderProductInfoProps {
 }
 
 export function OrderProductInfo({ item }: OrderProductInfoProps) {
-  const { token } = theme.useToken()
   return (
-    <Flex gap={token.marginXS} align="flex-start">
+    <Flex gap={8} align="flex-start">
       <Avatar
         shape="square"
         size={56}

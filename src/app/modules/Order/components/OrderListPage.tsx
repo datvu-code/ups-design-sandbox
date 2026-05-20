@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { message, theme } from 'antd'
+import { message } from 'antd'
 import { OrderPageTabs } from './OrderPageTabs'
 import { OrderFilterBar } from './OrderFilterBar'
 import { OrderListToolbar } from './OrderListToolbar'
@@ -19,8 +19,14 @@ const DEFAULT_FILTER: OrderFilterState = {
   warehouse: null,
 }
 
+const card: React.CSSProperties = {
+  backgroundColor: 'var(--ant-color-bg-container)',
+  borderRadius: 'var(--ant-border-radius-lg)',
+  boxShadow: 'var(--ant-box-shadow-tertiary)',
+  marginBottom: 'var(--ant-margin)',
+}
+
 export function OrderListPage() {
-  const { token } = theme.useToken()
   const [pageTab, setPageTab] = useState<OrderPageTab>('marketplace')
   const [filter, setFilter] = useState<OrderFilterState>(DEFAULT_FILTER)
   const [activeStatus, setActiveStatus] = useState<OrderStatus>('all')
@@ -36,20 +42,11 @@ export function OrderListPage() {
       ? mockOrders
       : mockOrders.filter((o) => o.tabStatus === activeStatus)
 
-  const card = {
-    backgroundColor: token.colorBgContainer,
-    borderRadius: token.borderRadiusLG,
-    boxShadow: token.boxShadowTertiary,
-    marginBottom: token.margin,
-  }
-
   return (
     <div>
-      {/* Page-level tabs */}
       <OrderPageTabs activeTab={pageTab} onTabChange={setPageTab} />
 
-      {/* Filter bar */}
-      <div style={{ ...card, padding: token.paddingLG }}>
+      <div style={{ ...card, padding: 'var(--ant-padding-lg)' }}>
         <OrderFilterBar
           filter={filter}
           onFilterChange={handleFilterChange}
@@ -57,7 +54,6 @@ export function OrderListPage() {
         />
       </div>
 
-      {/* Toolbar + bulk actions + status tabs */}
       <div style={card}>
         <OrderListToolbar
           lastSyncTime="10:00 19/05/2026"
@@ -72,7 +68,7 @@ export function OrderListPage() {
           onSortByChange={setSortBy}
           onDirectionChange={setSortDirection}
         />
-        <div style={{ padding: `0 ${token.paddingLG}px` }}>
+        <div style={{ padding: '0 var(--ant-padding-lg)' }}>
           <OrderStatusTabs
             tabs={orderStatusTabs}
             activeStatus={activeStatus}

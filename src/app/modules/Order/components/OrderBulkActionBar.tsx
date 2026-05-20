@@ -1,4 +1,4 @@
-import { Button, Dropdown, Flex, Typography, theme } from 'antd'
+import { Button, Dropdown, Flex, Typography } from 'antd'
 import { IconChevronDown } from '@tabler/icons-react'
 import { OrderSortControl } from './OrderSortControl'
 import type { MenuProps } from 'antd'
@@ -24,16 +24,15 @@ export function OrderBulkActionBar({
   onSortByChange,
   onDirectionChange,
 }: OrderBulkActionBarProps) {
-  const { token } = theme.useToken()
   return (
     <Flex
       justify="space-between"
       align="center"
       wrap
-      gap={token.marginSM}
-      style={{ padding: `${token.paddingXS}px ${token.paddingLG}px` }}
+      gap={12}
+      style={{ padding: 'var(--ant-padding-xs) var(--ant-padding-lg)' }}
     >
-      <Flex align="center" gap={token.marginSM}>
+      <Flex align="center" gap={12}>
         <Dropdown menu={{ items: bulkActionItems }} trigger={['click']} disabled={selectedCount === 0}>
           <Button disabled={selectedCount === 0}>
             Thao tác hàng loạt <IconChevronDown size={14} />

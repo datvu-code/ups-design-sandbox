@@ -1,5 +1,6 @@
-import { Button, Flex, Select, Typography, theme } from 'antd'
+import { Button, Flex, Select, Typography } from 'antd'
 import { IconChevronDown, IconSortAscending, IconSortDescending } from '@tabler/icons-react'
+import styles from './OrderSortControl.module.css'
 
 const chevron = <IconChevronDown size={14} />
 
@@ -24,9 +25,8 @@ export function OrderSortControl({
   onSortByChange,
   onDirectionChange,
 }: OrderSortControlProps) {
-  const { token } = theme.useToken()
   return (
-    <Flex align="center" gap={token.marginXS}>
+    <Flex align="center" gap={8}>
       <Typography.Text type="secondary">Sắp xếp theo:</Typography.Text>
       <Select
         value={sortBy}
@@ -36,20 +36,14 @@ export function OrderSortControl({
         style={{ width: 200 }}
       />
       <Button
-        type="default"
         icon={<IconSortAscending size={16} />}
         onClick={() => onDirectionChange('asc')}
-        style={sortDirection === 'asc'
-          ? { borderColor: token.colorPrimary, color: token.colorPrimary }
-          : undefined}
+        className={sortDirection === 'asc' ? styles.btnActive : ''}
       />
       <Button
-        type="default"
         icon={<IconSortDescending size={16} />}
         onClick={() => onDirectionChange('desc')}
-        style={sortDirection === 'desc'
-          ? { borderColor: token.colorPrimary, color: token.colorPrimary }
-          : undefined}
+        className={sortDirection === 'desc' ? styles.btnActive : ''}
       />
     </Flex>
   )

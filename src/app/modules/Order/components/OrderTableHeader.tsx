@@ -1,4 +1,4 @@
-import { Checkbox, Flex, Typography, theme } from 'antd'
+import { Checkbox, Flex, Typography } from 'antd'
 import { ORDER_TABLE_COLUMNS } from '../utils/tableColumns'
 
 interface OrderTableHeaderProps {
@@ -12,14 +12,13 @@ export function OrderTableHeader({
   indeterminate,
   onSelectAll,
 }: OrderTableHeaderProps) {
-  const { token } = theme.useToken()
   return (
     <Flex
       align="center"
       style={{
-        padding: `${token.paddingXS}px ${token.paddingLG}px`,
-        borderBottom: `1px solid ${token.colorBorderSecondary}`,
-        marginBottom: token.marginXS,
+        padding: 'var(--ant-padding-xs) var(--ant-padding-lg)',
+        borderBottom: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
+        marginBottom: 'var(--ant-margin-xs)',
       }}
     >
       {ORDER_TABLE_COLUMNS.map((col, idx) => {
@@ -27,19 +26,22 @@ export function OrderTableHeader({
         const cellStyle = {
           flex: col.flex,
           minWidth: col.minWidth,
-          paddingRight: isLast ? 0 : token.paddingXS,
+          paddingRight: isLast ? 0 : 8,
         }
 
         if (idx === 0) {
           return (
-            <Flex key={col.key} align="center" gap={token.marginXS} style={cellStyle}>
+            <Flex key={col.key} align="center" gap={8} style={cellStyle}>
               <Checkbox
                 checked={allSelected}
                 indeterminate={indeterminate}
                 onChange={(e) => onSelectAll(e.target.checked)}
                 style={{ flexShrink: 0 }}
               />
-              <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+              <Typography.Text
+                type="secondary"
+                style={{ fontSize: 'var(--ant-font-size-sm)' }}
+              >
                 {col.label}
               </Typography.Text>
             </Flex>
@@ -47,13 +49,11 @@ export function OrderTableHeader({
         }
 
         return (
-          <Flex
-            key={col.key}
-            justify="flex-start"
-            align="center"
-            style={cellStyle}
-          >
-            <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+          <Flex key={col.key} justify="flex-start" align="center" style={cellStyle}>
+            <Typography.Text
+              type="secondary"
+              style={{ fontSize: 'var(--ant-font-size-sm)' }}
+            >
               {col.label}
             </Typography.Text>
           </Flex>

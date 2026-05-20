@@ -1,8 +1,8 @@
-import { Button, Col, DatePicker, Flex, Input, Row, Select, theme } from 'antd'
+import { Button, Col, DatePicker, Flex, Input, Row, Select } from 'antd'
 import { IconAdjustmentsHorizontal, IconChevronDown, IconSearch } from '@tabler/icons-react'
+import type { OrderDateFilterType, OrderFilterState, OrderSearchType } from '../types'
 
 const chevron = <IconChevronDown size={14} />
-import type { OrderDateFilterType, OrderFilterState, OrderSearchType } from '../types'
 
 const dateFilterOptions = [
   { value: 'created_at', label: 'Thời gian tạo đơn hàng' },
@@ -23,13 +23,9 @@ const platformOptions = [
   { value: 'lazada', label: 'Lazada' },
 ]
 
-const shopOptions = [
-  { value: 'shop_1', label: 'Đinh Hương' },
-]
+const shopOptions = [{ value: 'shop_1', label: 'Đinh Hương' }]
 
-const warehouseOptions = [
-  { value: 'kho_thoi_trang', label: 'KHO THỜI TRANG' },
-]
+const warehouseOptions = [{ value: 'kho_thoi_trang', label: 'KHO THỜI TRANG' }]
 
 interface OrderFilterBarProps {
   filter: OrderFilterState
@@ -38,12 +34,9 @@ interface OrderFilterBarProps {
 }
 
 export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: OrderFilterBarProps) {
-  const { token } = theme.useToken()
-
   return (
-    <Flex vertical gap={token.marginXS}>
-      {/* Row 1: date range + platform + shop */}
-      <Row gutter={token.marginXS} wrap={false}>
+    <Flex vertical gap={8}>
+      <Row gutter={8} wrap={false}>
         <Col flex="auto">
           <Flex>
             <Select
@@ -58,9 +51,7 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
               placeholder={['hh:mm dd/mm/yyyy', 'hh:mm dd/mm/yyyy']}
               format="HH:mm DD/MM/YYYY"
               onChange={(_, s) =>
-                onFilterChange({
-                  dateRange: s[0] && s[1] ? [s[0], s[1]] : null,
-                })
+                onFilterChange({ dateRange: s[0] && s[1] ? [s[0], s[1]] : null })
               }
               style={{ flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
             />
@@ -90,8 +81,7 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
         </Col>
       </Row>
 
-      {/* Row 2: search + warehouse + advanced filter */}
-      <Row gutter={token.marginXS} wrap={false}>
+      <Row gutter={8} wrap={false}>
         <Col flex="auto">
           <Flex>
             <Select
@@ -104,7 +94,12 @@ export function OrderFilterBar({ filter, onFilterChange, onAdvancedFilter }: Ord
             <Input
               value={filter.searchQuery}
               placeholder="Tìm đơn hàng"
-              prefix={<IconSearch size={16} color={token.colorTextTertiary} />}
+              prefix={
+                <IconSearch
+                  size={16}
+                  style={{ color: 'var(--ant-color-text-tertiary)' }}
+                />
+              }
               onChange={(e) => onFilterChange({ searchQuery: e.target.value })}
               style={{ flex: 1, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
             />

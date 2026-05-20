@@ -1,4 +1,4 @@
-import { Flex, Typography, theme } from 'antd'
+import { Flex, Typography } from 'antd'
 import type { OrderShipping } from '../types'
 
 interface OrderShippingInfoProps {
@@ -6,10 +6,9 @@ interface OrderShippingInfoProps {
 }
 
 export function OrderShippingInfo({ shipping }: OrderShippingInfoProps) {
-  const { token } = theme.useToken()
   return (
     <Flex vertical gap={4}>
-      <Typography.Text style={{ color: token.colorText }}>{shipping.carrier}</Typography.Text>
+      <Typography.Text>{shipping.carrier}</Typography.Text>
       <Typography.Text type="secondary">
         Mã kiện hàng: {shipping.trackingNumber}
       </Typography.Text>

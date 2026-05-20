@@ -1,4 +1,4 @@
-import { Button, Flex, Tag, Typography, theme, message } from 'antd'
+import { Button, Flex, Tag, Typography, message } from 'antd'
 import { IconArrowRight, IconCopy } from '@tabler/icons-react'
 import type { Order, OrderBadgeStatus } from '../types'
 
@@ -19,7 +19,6 @@ interface OrderRowHeaderProps {
 }
 
 export function OrderRowHeader({ order }: OrderRowHeaderProps) {
-  const { token } = theme.useToken()
   const badge = badgeConfig[order.badgeStatus]
 
   const handleCopyId = () => {
@@ -32,13 +31,13 @@ export function OrderRowHeader({ order }: OrderRowHeaderProps) {
       justify="space-between"
       align="center"
       style={{
-        padding: `${token.paddingXS}px ${token.paddingLG}px`,
-        backgroundColor: token.colorBgContainer,
-        borderBottom: `1px solid ${token.colorBorderSecondary}`,
+        padding: 'var(--ant-padding-xs) var(--ant-padding-lg)',
+        backgroundColor: 'var(--ant-color-bg-container)',
+        borderBottom: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
       }}
     >
-      <Flex align="center" gap={token.marginXS}>
-        <IconArrowRight size={14} color={token.colorTextTertiary} />
+      <Flex align="center" gap={8}>
+        <IconArrowRight size={14} style={{ color: 'var(--ant-color-text-tertiary)' }} />
         <Typography.Text strong>{order.shopName}</Typography.Text>
         <Typography.Text type="secondary">|</Typography.Text>
         <Typography.Text type="secondary">Mã đơn hàng: {order.id}</Typography.Text>
@@ -47,10 +46,10 @@ export function OrderRowHeader({ order }: OrderRowHeaderProps) {
           size="small"
           icon={<IconCopy size={14} />}
           onClick={handleCopyId}
-          style={{ color: token.colorTextTertiary }}
+          style={{ color: 'var(--ant-color-text-tertiary)' }}
         />
       </Flex>
-      <Flex align="center" gap={token.marginSM}>
+      <Flex align="center" gap={12}>
         <Typography.Text type="secondary">Đặt lúc: {order.placedAt}</Typography.Text>
         <Tag color={badge.color}>{badge.label}</Tag>
       </Flex>

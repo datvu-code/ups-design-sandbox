@@ -1,4 +1,4 @@
-import { Checkbox, Flex, Typography, theme } from 'antd'
+import { Checkbox, Flex, Typography } from 'antd'
 import { OrderProductInfo } from './OrderProductInfo'
 import { OrderProcessingInfo } from './OrderProcessingInfo'
 import { OrderShippingInfo } from './OrderShippingInfo'
@@ -18,40 +18,37 @@ interface OrderRowBodyProps {
 }
 
 export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBodyProps) {
-  const { token } = theme.useToken()
   const lastIdx = ORDER_TABLE_COLUMNS.length - 1
 
   const cell = (idx: number) => ({
     flex: ORDER_TABLE_COLUMNS[idx].flex,
     minWidth: ORDER_TABLE_COLUMNS[idx].minWidth,
-    paddingRight: idx < lastIdx ? token.paddingXS : 0,
+    paddingRight: idx < lastIdx ? 8 : 0,
   })
 
   return (
     <Flex
       align="flex-start"
       style={{
-        padding: `${token.padding}px ${token.paddingLG}px`,
-        borderBottom: `1px solid ${token.colorBorderSecondary}`,
-        backgroundColor: token.colorBgContainer,
+        padding: 'var(--ant-padding) var(--ant-padding-lg)',
+        borderBottom: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
+        backgroundColor: 'var(--ant-color-bg-container)',
       }}
     >
-      {/* Thông tin sản phẩm */}
-      <Flex align="flex-start" gap={token.marginXS} style={cell(0)}>
+      <Flex align="flex-start" gap={8} style={cell(0)}>
         <Checkbox
           checked={selected}
           onChange={(e) => onSelect(order.id, e.target.checked)}
-          style={{ marginTop: 4, flexShrink: 0 }}
+          style={{ flexShrink: 0, marginTop: 'var(--ant-padding-xxs)' }}
         />
-        <Flex vertical gap={token.marginXS} style={{ flex: 1, minWidth: 0 }}>
+        <Flex vertical gap={8} style={{ flex: 1, minWidth: 0 }}>
           {order.items.map((item, idx) => (
             <OrderProductInfo key={idx} item={item} />
           ))}
         </Flex>
       </Flex>
 
-      {/* Tổng tiền */}
-      <Flex vertical gap={token.paddingXXS} style={cell(1)}>
+      <Flex vertical gap={4} style={cell(1)}>
         {order.items.map((item, idx) => (
           <Typography.Text key={idx} strong>
             {formatAmount(item.totalAmount)}
@@ -59,28 +56,23 @@ export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBo
         ))}
       </Flex>
 
-      {/* Kho xử lý */}
       <Flex style={cell(2)}>
         <Typography.Text>{order.warehouse}</Typography.Text>
       </Flex>
 
-      {/* Xử lý */}
       <Flex style={cell(3)}>
         <OrderProcessingInfo processing={order.processing} />
       </Flex>
 
-      {/* Vận chuyển */}
       <Flex style={cell(4)}>
         <OrderShippingInfo shipping={order.shipping} />
       </Flex>
 
-      {/* Người nhận */}
       <Flex vertical gap={4} style={cell(5)}>
         <Typography.Text>{order.recipient.name}</Typography.Text>
         <Typography.Text type="secondary">{order.recipient.province}</Typography.Text>
       </Flex>
 
-      {/* Thao tác */}
       <Flex justify="flex-start" style={cell(6)}>
         <OrderRowAction orderId={order.id} onAction={onAction} />
       </Flex>

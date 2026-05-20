@@ -1,34 +1,34 @@
 import { ConfigProvider, theme } from 'antd'
 import type { ReactNode } from 'react'
+import { seedTokens, aliasTokens, dimensionTokens, typographyTokens } from '../tokens/semantic'
+import { componentTokens } from '../tokens/components'
 
+/**
+ * UpS design system theme — single source of truth.
+ *
+ * Token hierarchy (mirrors Figma variable collections):
+ *   palette.ts     — primitive color values (internal, not passed to antd)
+ *   semantic.ts    — seed + alias tokens  → theme.token
+ *   components.ts  — component overrides  → theme.components
+ *
+ * Antd derives Map Tokens (colorPrimaryBg, colorPrimaryHover, etc.) automatically
+ * from Seed Tokens via its color algorithm — do not set those manually.
+ */
 const upsTheme = {
   token: {
-    colorPrimary: '#e65018',
-    colorBgLayout: '#f3f5f8',
-    colorBgContainer: '#ffffff',
-    colorText: '#0f1215',
-    colorTextSecondary: '#404246',
-    colorTextTertiary: '#707274',
-    colorBorder: '#d5d7db',
-    colorBorderSecondary: '#edeef0',
-    colorError: '#e74850',
-    colorSuccess: '#007d00',
-    colorWarning: '#a44300',
-    fontFamily: "'Roboto', sans-serif",
-    borderRadius: 6,
-    borderRadiusLG: 8,
-    padding: 16,
-    paddingLG: 24,
-    paddingSM: 12,
-    paddingXS: 8,
-    margin: 16,
-    marginLG: 24,
-    marginSM: 12,
-    marginXS: 8,
+    ...seedTokens,
+    ...aliasTokens,
+    ...dimensionTokens,
+    ...typographyTokens,
   },
+  components: componentTokens,
   algorithm: theme.defaultAlgorithm,
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  return <ConfigProvider theme={upsTheme}>{children}</ConfigProvider>
+  return (
+    <ConfigProvider theme={{ ...upsTheme, cssVar: { prefix: 'ant' } }}>
+      {children}
+    </ConfigProvider>
+  )
 }

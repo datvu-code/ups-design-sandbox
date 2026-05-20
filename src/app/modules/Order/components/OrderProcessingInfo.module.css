@@ -1,0 +1,11 @@
+.deadline {
+  color: var(--ant-color-text);
+}
+
+.deadlineOverdue {
+  color: var(--ant-color-error);
+}
+
+.infoIcon {
+  color: var(--ant-color-text-tertiary);
+}

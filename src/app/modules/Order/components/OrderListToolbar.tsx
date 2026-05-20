@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, theme } from 'antd'
+import { Button, Divider, Flex } from 'antd'
 import { OrderSyncStatus } from './OrderSyncStatus'
 import { OrderExportActions } from './OrderExportActions'
 
@@ -15,19 +15,18 @@ export function OrderListToolbar({
   onViewHistory,
   onBulkProcess,
 }: OrderListToolbarProps) {
-  const { token } = theme.useToken()
   return (
     <Flex
       justify="space-between"
       align="center"
       wrap
-      gap={token.marginSM}
-      style={{ padding: `${token.paddingSM}px ${token.paddingLG}px` }}
+      gap={12}
+      style={{ padding: 'var(--ant-padding-sm) var(--ant-padding-lg)' }}
     >
       <OrderSyncStatus lastSyncTime={lastSyncTime} onRefresh={onRefresh} />
-      <Flex align="center" gap={token.marginXS} wrap>
+      <Flex align="center" gap={8} wrap>
         <OrderExportActions onViewHistory={onViewHistory} />
-        <Divider type="vertical" style={{ height: 24, margin: 0 }} />
+        <Divider vertical style={{ height: 24, margin: 0 }} />
         <Button type="primary" onClick={onBulkProcess}>
           Xử lý hàng loạt
         </Button>
