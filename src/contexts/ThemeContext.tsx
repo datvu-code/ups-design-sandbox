@@ -1,27 +1,28 @@
 import { ConfigProvider, theme } from 'antd'
 import type { ReactNode } from 'react'
-import { seedTokens, aliasTokens, dimensionTokens, typographyTokens } from '../tokens/semantic'
-import { componentTokens } from '../tokens/components'
 
-/**
- * UpS design system theme — single source of truth.
- *
- * Token hierarchy (mirrors Figma variable collections):
- *   palette.ts     — primitive color values (internal, not passed to antd)
- *   semantic.ts    — seed + alias tokens  → theme.token
- *   components.ts  — component overrides  → theme.components
- *
- * Antd derives Map Tokens (colorPrimaryBg, colorPrimaryHover, etc.) automatically
- * from Seed Tokens via its color algorithm — do not set those manually.
- */
 const upsTheme = {
   token: {
-    ...seedTokens,
-    ...aliasTokens,
-    ...dimensionTokens,
-    ...typographyTokens,
+    // Brand
+    colorPrimary:  '#e65018',
+    colorSuccess:  '#007d00',
+    colorWarning:  '#a44300',
+    colorError:    '#e74850',
+    colorInfo:     '#2456d3',
+    colorLink:     '#707274',
+
+    // Neutral — UpS gray scale (differs from antd defaults)
+    colorText:             '#0f1215',
+    colorTextSecondary:    '#404246',
+    colorTextTertiary:     '#707274',
+    colorTextQuaternary:   '#9d9ea1',
+    colorBgLayout:         '#f3f5f8',
+    colorBorder:           '#d5d7db',
+    colorBorderSecondary:  '#edeef0',
+
+    // Typography
+    fontFamily: "'Roboto', sans-serif",
   },
-  components: componentTokens,
   algorithm: theme.defaultAlgorithm,
 }
 
