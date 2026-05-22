@@ -4,12 +4,7 @@ import type { ReactNode } from 'react'
 const upsTheme = {
   token: {
     // Brand
-    colorPrimary:  '#e65018',
-    colorSuccess:  '#007d00',
-    colorWarning:  '#a44300',
-    colorError:    '#e74850',
-    colorInfo:     '#2456d3',
-    colorLink:     '#707274',
+    colorPrimary: '#e65018',
 
     // Neutral — UpS gray scale (differs from antd defaults)
     colorText:             '#0f1215',

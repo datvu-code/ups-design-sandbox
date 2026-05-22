@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Alert, Empty, Flex, Skeleton } from 'antd'
 import { OrderRow } from './OrderRow'
 import { OrderTableHeader } from './OrderTableHeader'
-import { TABLE_MIN_WIDTH } from '../utils/tableColumns'
-import type { Order } from '../types'
+import { TABLE_MIN_WIDTH } from '../../utils/tableColumns'
+import type { Order } from '../../types'
 
 interface OrderTableProps {
   orders: Order[]

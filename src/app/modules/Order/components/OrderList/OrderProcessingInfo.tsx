@@ -1,6 +1,6 @@
 import { Flex, Typography, Tooltip } from 'antd'
 import { IconInfoCircle } from '@tabler/icons-react'
-import type { OrderProcessing } from '../types'
+import type { OrderProcessing } from '../../types'
 import styles from './OrderProcessingInfo.module.css'
 
 interface OrderProcessingInfoProps {

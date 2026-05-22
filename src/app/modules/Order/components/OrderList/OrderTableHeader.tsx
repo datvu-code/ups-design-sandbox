@@ -1,5 +1,5 @@
 import { Checkbox, Flex, Typography } from 'antd'
-import { ORDER_TABLE_COLUMNS } from '../utils/tableColumns'
+import { ORDER_TABLE_COLUMNS } from '../../utils/tableColumns'
 
 interface OrderTableHeaderProps {
   allSelected: boolean
@@ -17,7 +17,6 @@ export function OrderTableHeader({
       align="center"
       style={{
         padding: 'var(--ant-padding-xs) var(--ant-padding-lg)',
-        borderBottom: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
         marginBottom: 'var(--ant-margin-xs)',
       }}
     >

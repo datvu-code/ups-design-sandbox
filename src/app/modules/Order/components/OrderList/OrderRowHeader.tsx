@@ -1,6 +1,6 @@
 import { Button, Flex, Tag, Typography, message } from 'antd'
 import { IconArrowRight, IconCopy } from '@tabler/icons-react'
-import type { Order, OrderBadgeStatus } from '../types'
+import type { Order, OrderBadgeStatus } from '../../types'
 
 const badgeConfig: Record<OrderBadgeStatus, { color: string; label: string }> = {
   waiting_pack: { color: 'orange', label: 'Chờ đóng gói' },

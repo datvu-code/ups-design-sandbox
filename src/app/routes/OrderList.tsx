@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { message } from 'antd'
-import { OrderPageTabs } from './OrderPageTabs'
-import { OrderFilterBar } from './OrderFilterBar'
-import { OrderListToolbar } from './OrderListToolbar'
-import { OrderBulkActionBar } from './OrderBulkActionBar'
-import { OrderStatusTabs } from './OrderStatusTabs'
-import { OrderTable } from './OrderTable'
-import { mockOrders, orderStatusTabs } from '../../../../mock-data/order'
-import type { OrderFilterState, OrderPageTab, OrderStatus } from '../types'
+import { OrderPageTabs } from '../modules/Order/components/OrderList/OrderPageTabs'
+import { OrderFilterBar } from '../modules/Order/components/OrderList/OrderFilterBar'
+import { OrderListToolbar } from '../modules/Order/components/OrderList/OrderListToolbar'
+import { OrderBulkActionBar } from '../modules/Order/components/OrderList/OrderBulkActionBar'
+import { OrderStatusTabs } from '../modules/Order/components/OrderList/OrderStatusTabs'
+import { OrderTable } from '../modules/Order/components/OrderList/OrderTable'
+import { mockOrders, orderStatusTabs } from '../../mock-data/order'
+import type { OrderFilterState, OrderPageTab, OrderStatus } from '../modules/Order/types'
 
 const DEFAULT_FILTER: OrderFilterState = {
   dateFilterType: 'created_at',

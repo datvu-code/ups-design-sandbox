@@ -1,6 +1,6 @@
 import { Avatar, Flex, Typography } from 'antd'
 import { IconShoppingBag } from '@tabler/icons-react'
-import type { OrderItem } from '../types'
+import type { OrderItem } from '../../types'
 
 interface OrderProductInfoProps {
   item: OrderItem

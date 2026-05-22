@@ -3,8 +3,8 @@ import { OrderProductInfo } from './OrderProductInfo'
 import { OrderProcessingInfo } from './OrderProcessingInfo'
 import { OrderShippingInfo } from './OrderShippingInfo'
 import { OrderRowAction } from './OrderRowAction'
-import { ORDER_TABLE_COLUMNS } from '../utils/tableColumns'
-import type { Order } from '../types'
+import { ORDER_TABLE_COLUMNS } from '../../utils/tableColumns'
+import type { Order } from '../../types'
 
 function formatAmount(amount: number): string {
   return amount.toLocaleString('vi-VN') + ' đ'

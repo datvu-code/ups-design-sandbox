@@ -1,6 +1,6 @@
 import { Button, Col, DatePicker, Flex, Input, Row, Select } from 'antd'
 import { IconAdjustmentsHorizontal, IconChevronDown, IconSearch } from '@tabler/icons-react'
-import type { OrderDateFilterType, OrderFilterState, OrderSearchType } from '../types'
+import type { OrderDateFilterType, OrderFilterState, OrderSearchType } from '../../types'
 
 const chevron = <IconChevronDown size={14} />
 

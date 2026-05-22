@@ -1,5 +1,5 @@
 import { Flex, Typography } from 'antd'
-import type { OrderShipping } from '../types'
+import type { OrderShipping } from '../../types'
 
 interface OrderShippingInfoProps {
   shipping: OrderShipping

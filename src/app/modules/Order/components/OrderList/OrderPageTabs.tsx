@@ -1,5 +1,5 @@
 import { Tabs } from 'antd'
-import type { OrderPageTab } from '../types'
+import type { OrderPageTab } from '../../types'
 
 const PAGE_TABS: { key: OrderPageTab; label: string }[] = [
   { key: 'marketplace', label: 'Đơn từ sàn' },

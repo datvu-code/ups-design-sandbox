@@ -1,6 +1,6 @@
 import { OrderRowHeader } from './OrderRowHeader'
 import { OrderRowBody } from './OrderRowBody'
-import type { Order } from '../types'
+import type { Order } from '../../types'
 import styles from './OrderRow.module.css'
 
 interface OrderRowProps {
