@@ -1,4 +1,34 @@
-import type { Order, OrderStatusTab } from '../app/modules/Order/types'
+import type { Order, OrderStatusTab, StaffOption, ChannelOption } from '../app/modules/Order/types'
+
+export const mockChannels: ChannelOption[] = [
+  { value: 'shopee', label: 'Shopee' },
+  { value: 'lazada', label: 'Lazada' },
+  { value: 'tiktok', label: 'TikTok Shop' },
+  { value: 'website', label: 'Website' },
+  { value: 'manual', label: 'Thủ công' },
+]
+
+export const mockShops: ChannelOption[] = [
+  { value: 'shop1', label: 'Đinh Hương Official' },
+  { value: 'shop2', label: 'Thời trang UpS' },
+]
+
+export const mockWarehouses: ChannelOption[] = [
+  { value: 'wh1', label: 'Kho thời trang' },
+  { value: 'wh2', label: 'Kho phụ kiện' },
+]
+
+export const mockSalesStaff: StaffOption[] = [
+  { value: 'daothingoc9@gmail.com', label: 'daothingoc9@gmail.com' },
+  { value: 'staff2@ups.vn', label: 'staff2@ups.vn' },
+]
+
+export const mockMarketingStaff: StaffOption[] = [
+  { value: 'marketing1@ups.vn', label: 'Nguyễn Marketing' },
+  { value: 'marketing2@ups.vn', label: 'Trần Marketing' },
+]
+
+export const mockTags: string[] = ['VIP', 'Khách quen', 'KOC', 'KOL']
 
 export const orderStatusTabs: OrderStatusTab[] = [
   { label: 'Tất cả', status: 'all', count: null },

@@ -4,6 +4,7 @@ export type NavItem = NonNullable<MenuProps['items']>[number]
 
 export const navItems: NavItem[] = [
   { key: 'order', label: 'Order' },
+  { key: 'order-create', label: 'Order Create' },
   { key: 'products', label: 'Products' },
   { key: 'ads', label: 'Ads' },
   { key: 'report', label: 'Report' },

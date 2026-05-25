@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { AppLayout } from './layouts/AppLayout'
 import { OrderListPage } from './app/routes/OrderList'
+import { OrderCreatePage } from './app/routes/OrderCreate'
 import { TokensPage } from './app/modules/Tokens/components/TokensPage'
 
 const PAGES: Record<string, React.ReactNode> = {
   order: <OrderListPage />,
+  'order-create': <OrderCreatePage />,
   tokens: <TokensPage />,
 }
 

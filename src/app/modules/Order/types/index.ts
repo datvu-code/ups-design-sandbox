@@ -72,6 +72,42 @@ export interface OrderFilterState {
   warehouse: string | null
 }
 
+// ─── Order Create ─────────────────────────────────────────────────────────────
+
+export type WarehouseMode = 'auto' | 'manual'
+export type NoteType = 'internal' | 'customer'
+export type OrderCodeMode = 'manual' | 'auto'
+
+export interface OrderCreateForm {
+  customerId: string | null
+  channel: string | null
+  shop: string | null
+  warehouse: string | null
+  warehouseMode: WarehouseMode
+  noteType: NoteType
+  note: string
+  tags: string[]
+  salesStaff: string | null
+  marketingStaff: string | null
+  orderDate: string
+  expectedDeliveryDate: string | null
+  utm: string
+  orderCodeMode: OrderCodeMode
+  isKocKol: boolean
+}
+
+export interface StaffOption {
+  value: string
+  label: string
+}
+
+export interface ChannelOption {
+  value: string
+  label: string
+}
+
+// ─── Order ───────────────────────────────────────────────────────────────────
+
 export interface Order {
   id: string
   shopName: string
