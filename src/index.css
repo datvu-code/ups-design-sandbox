@@ -1,3 +1,12 @@
+/* Layer ordering: antd token cascade wins over Tailwind base resets */
+@layer tailwind-base, antd, custom;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@tailwind components;
+@tailwind utilities;
 
 *,
 *::before,
