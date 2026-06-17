@@ -1,98 +1,131 @@
 # User Story
 
-> Nguồn: https://cucumber.io/docs/terms/user-story
+> Nguồn: [deanpeters/Product-Manager-Skills — skills/user-story](https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/user-story)
 
 ---
 
 ## Định nghĩa
 
-User Story là một mô tả ngắn gọn về một tính năng từ góc nhìn của người dùng cuối hoặc stakeholder. Mục tiêu là nắm bắt **WHO** muốn gì, **WHAT** họ muốn, và **WHY** họ muốn nó — không mô tả cách thực hiện.
+User Story là một mô tả ngắn gọn về một tính năng từ góc nhìn của người dùng cuối. Nó kết hợp format của Mike Cohn với Gherkin acceptance criteria để làm rõ **WHO** muốn gì, **WHAT** họ muốn, **WHY** họ muốn — và **HOW** bạn sẽ biết khi nào nó hoàn thành.
+
+> "A conversation starter that captures *who* benefits, *what* they're doing, *why* it matters, and *how* you'll know it works."
 
 ---
 
-## Hai biến thể format
+## Cấu trúc
 
-### Biến thể gốc (Connextra — Mike Cohn)
-```
-As a <actor>
-I want <feature>
-So that <benefit>
-```
+User Story gồm hai phần:
 
-### Biến thể đảo (benefit-first — dùng trong skill này)
+### Phần 1 — Use Case (Mike Cohn format)
+
 ```
-In order to <benefit>
-As a <actor>
-I want to <feature>
+As a [persona]
+I want to [action]
+so that [desired outcome]
 ```
 
-Benefit-first buộc người viết phải xác định WHY trước — ngăn chặn việc mô tả feature mà không có lý do rõ ràng.
+### Phần 2 — Acceptance Criteria (Gherkin format)
+
+```
+Scenario: [Brief, human-readable scenario describing value]
+Given: [Initial context or precondition]
+and Given: [Additional context or preconditions — lặp lại nếu cần]
+When: [Event that triggers the action]
+Then: [Expected outcome aligned to "so that"]
+```
+
+> **Quy tắc cứng:** Chỉ dùng **một When** và **một Then**. Nhiều cặp When/Then = story cần tách.
 
 ---
 
-## Ba thành phần
+## Template đầy đủ
 
-| Thành phần | Keyword | Câu hỏi cần trả lời |
-|---|---|---|
-| **WHO** | `As a` | Ai là người dùng? Role, ngữ cảnh, cấp độ truy cập? |
-| **WHAT** | `I want` | Hành động hoặc thông tin họ cần? |
-| **WHY** | `So that` / `In order to` | Giá trị business hoặc động lực người dùng? |
+```markdown
+### User Story [ID]:
+
+- **Summary:** [Brief, memorable title focused on user value]
+
+#### Use Case:
+- **As a** [user name if available, otherwise persona, otherwise role]
+- **I want to** [action the user takes to get to the outcome]
+- **so that** [desired outcome for the user]
+
+#### Acceptance Criteria:
+- **Scenario:** [Brief, human-readable scenario describing value]
+- **Given:** [Initial context or precondition]
+- **and Given:** [Additional context or preconditions]
+- **and Given:** [UI-focused context ensuring the When can happen]
+- **and Given:** [Outcomes-focused context ensuring the Then is delivered]
+- **When:** [Event that triggers the action]
+- **Then:** [Expected outcome aligned to "so that"]
+```
 
 ---
 
 ## Ví dụ tốt
 
-```gherkin
-In order to gain an understanding of the Cucumber testing system
-As a non-programmer
-I want to have an overview of Cucumber that is understandable by non-geeks
+```markdown
+### User Story 042:
+
+- **Summary:** Enable Google login for trial users to reduce signup friction
+
+#### Use Case:
+- **As a** trial user visiting the app for the first time
+- **I want to** log in using my Google account
+- **so that** I can access the app without creating and remembering a new password
+
+#### Acceptance Criteria:
+- **Scenario:** First-time trial user logs in via Google OAuth
+- **Given:** I am on the login page
+- **and Given:** I have a Google account
+- **and Given:** The "Sign in with Google" button is visible
+- **When:** I click the "Sign in with Google" button and authorize the app
+- **Then:** I am logged into the app and redirected to the onboarding flow
 ```
 
-```
-As a mobile bank customer
-I want to see balance on my accounts
-So that I can make better informed decisions about my spending
-```
+**Tại sao tốt:**
+- Persona cụ thể ("trial user visiting for the first time")
+- Action rõ ràng ("log in using my Google account")
+- Outcome giải thích động lực ("without creating a new password")
+- Acceptance criteria có thể kiểm chứng được
+- Đúng một When, một Then
 
 ---
 
-## Dấu hiệu User Story kém chất lượng
+## 5 lỗi phổ biến
 
-| Vấn đề | Ví dụ tệ | Cách sửa |
+| Lỗi | Ví dụ tệ | Cách sửa |
 |---|---|---|
-| Thiếu WHY | "User có thể filter đơn hàng" | "In order to tìm nhanh đơn cần xử lý, As a seller, I want to filter..." |
-| WHO quá chung | "As a user" | Xác định role cụ thể: seller, admin, warehouse staff |
-| WHAT là giải pháp, không phải nhu cầu | "I want a dropdown with 5 options" | "I want to narrow down orders by status" |
-| Quá lớn (Epic) | Một story bao phủ cả module | Tách nhỏ theo từng flow độc lập |
+| Kỹ thuật giả user story | "Implement OAuth endpoint" | Viết từ góc nhìn người dùng, không phải developer |
+| Persona quá chung | "As a user" | Xác định role cụ thể: trial user, admin, warehouse staff |
+| "So that" lặp lại action | "so that I can log in" | "so that I can access without a new password" — outcome thực sự |
+| Story bao nhiều feature | "add, remove, update, checkout" | Tách thành từng story độc lập |
+| Acceptance criteria không đo được | "Then it works better" | "Then I am redirected to the dashboard within 2 seconds" |
 
 ---
 
-## Liên hệ với Acceptance Criteria
+## Ví dụ story cần tách
 
-User Story mô tả **intent**. Acceptance Criteria (viết bằng Gherkin) mô tả **khi nào story được coi là done**:
+```markdown
+### User Story 100 (CẦN TÁCH):
 
+#### Use Case:
+- As a shopper
+- I want to add items, remove items, update quantities, and checkout
+- so that I can complete my purchase
+
+#### Acceptance Criteria:
+- When I add an item → Then it appears in the cart
+- When I remove an item → Then it disappears
+- When I checkout → Then I proceed to payment
 ```
-User Story:
-  In order to tránh ship sai kho
-  As a warehouse staff
-  I want to xem đơn được phân theo kho xử lý
 
-Acceptance Criteria (Gherkin):
-  Scenario: Đơn có kho được phân công
-    Given đơn #123 được phân cho kho Hà Nội
-    When warehouse staff mở danh sách đơn
-    Then đơn #123 hiện trong tab "Kho Hà Nội"
-    And hiển thị tên kho rõ ràng trên row
+**Dấu hiệu:** Nhiều When/Then, scope quá lớn, các outcome không liên quan nhau.
 
-  Scenario: Đơn chưa có kho
-    Given đơn #456 chưa được phân kho
-    When warehouse staff mở danh sách đơn
-    Then đơn #456 hiển thị badge "Chưa có kho xử lý"
-    And không xuất hiện trong bất kỳ tab kho nào
-```
+**Cách tách:** Mỗi action (`add item`, `remove item`, `checkout`) trở thành một story riêng, mỗi cái có acceptance criteria tập trung.
 
 ---
 
 ## Vai trò trong po-generate-design
 
-Dimension **WHY**, **WHO**, **WHAT** trong bước đánh giá 7 chiều map trực tiếp vào ba thành phần của User Story. Structure Confirmation sử dụng format benefit-first để đảm bảo intent luôn được ghi lại trước khi execute.
+Dimension **WHO**, **WHAT**, **WHY** trong bước đánh giá 7 chiều map trực tiếp vào ba thành phần Use Case. Acceptance Criteria (Gherkin) là điều kiện để story được coi là **done** — phải đo được và QA có thể verify.
