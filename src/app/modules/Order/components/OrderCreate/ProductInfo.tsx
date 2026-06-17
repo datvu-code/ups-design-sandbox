@@ -3,6 +3,7 @@ import { IconChevronDown } from '@tabler/icons-react'
 import { ProductEmpty } from './ProductEmpty'
 import { OrderSummary } from './OrderSummary'
 import { OrderNotes } from './OrderNotes'
+import { useOrderCreateStyles } from './OrderCreate.style'
 import type { ChannelOption, OrderCreateForm, WarehouseMode } from '../../types'
 
 interface ProductInfoProps {
@@ -16,13 +17,6 @@ interface ProductInfoProps {
   onAddProduct: () => void
 }
 
-const sectionStyle: React.CSSProperties = {
-  backgroundColor: 'var(--ant-color-bg-container)',
-  borderRadius: 'var(--ant-border-radius-lg)',
-  padding: 'var(--ant-padding-lg)',
-  marginBottom: 'var(--ant-margin)',
-}
-
 export function ProductInfo({
   form,
   channels,
@@ -33,17 +27,18 @@ export function ProductInfo({
   onAddGift,
   onAddProduct,
 }: ProductInfoProps) {
+  const { styles } = useOrderCreateStyles()
   return (
-    <div style={sectionStyle}>
-      <Flex justify="space-between" align="center" style={{ marginBottom: 'var(--ant-margin-sm)' }}>
-        <Typography.Text strong style={{ fontSize: 'var(--ant-font-size-lg)' }}>Thông tin sản phẩm</Typography.Text>
+    <div className={styles.section}>
+      <Flex justify="space-between" align="center" style={{ marginBottom: 12 }}>
+        <Typography.Text strong className={styles.sectionTitle} style={{ marginBottom: 0 }}>Thông tin sản phẩm</Typography.Text>
         <Flex gap={8}>
           <Button size="small" onClick={onAddGift}>Thêm quà</Button>
           <Button size="small" type="primary" onClick={onAddProduct}>Thêm sản phẩm</Button>
         </Flex>
       </Flex>
 
-      <Flex gap={12} style={{ marginBottom: 'var(--ant-margin-sm)' }} align="center" wrap>
+      <Flex gap={12} style={{ marginBottom: 12 }} align="center" wrap>
         <Select
           style={{ flex: 1, minWidth: 140 }}
           placeholder="Chọn kênh bán"
@@ -80,7 +75,7 @@ export function ProductInfo({
 
       <ProductEmpty />
 
-      <Divider style={{ margin: 'var(--ant-margin-sm) 0' }} />
+      <Divider style={{ margin: '12px 0' }} />
 
       <Flex gap={24}>
         <div style={{ flex: 1 }}>
@@ -94,11 +89,7 @@ export function ProductInfo({
             onTagsChange={(tags) => onFormChange({ tags })}
           />
         </div>
-        <div style={{
-          flex: '0 0 300px',
-          borderLeft: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
-          paddingLeft: 'var(--ant-padding-lg)',
-        }}>
+        <div className={styles.summaryPanel}>
           <OrderSummary />
         </div>
       </Flex>

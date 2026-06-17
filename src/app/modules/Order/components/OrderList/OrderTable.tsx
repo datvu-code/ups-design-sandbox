@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Alert, Empty, Flex, Skeleton } from 'antd'
 import { OrderRow } from './OrderRow'
 import { OrderTableHeader } from './OrderTableHeader'
+import { useOrderListStyles } from './OrderList.style'
 import { TABLE_MIN_WIDTH } from '../../utils/tableColumns'
 import type { Order } from '../../types'
 
@@ -37,19 +38,13 @@ export function OrderTable({
     onSelectionChange(Array.from(next))
   }
 
+  const { styles } = useOrderListStyles()
+
   if (loading) {
     return (
       <Flex vertical gap={16}>
         {[1, 2, 3].map((i) => (
-          <div
-            key={i}
-            style={{
-              backgroundColor: 'var(--ant-color-bg-container)',
-              borderRadius: 'var(--ant-border-radius-lg)',
-              padding: 'var(--ant-padding-lg)',
-              border: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
-            }}
-          >
+          <div key={i} className={styles.skeletonCard}>
             <Skeleton active paragraph={{ rows: 3 }} />
           </div>
         ))}
@@ -70,7 +65,7 @@ export function OrderTable({
 
   if (orders.length === 0) {
     return (
-      <div style={{ padding: 'var(--ant-padding-lg)' }}>
+      <div className={styles.emptyWrapper}>
         <Empty description="Không có đơn hàng nào" />
       </div>
     )
@@ -81,7 +76,7 @@ export function OrderTable({
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ minWidth: TABLE_MIN_WIDTH, paddingBottom: 16 }}>
+      <div className={styles.scrollInner} style={{ minWidth: TABLE_MIN_WIDTH }}>
         <OrderTableHeader
           allSelected={allSelected}
           indeterminate={indeterminate}

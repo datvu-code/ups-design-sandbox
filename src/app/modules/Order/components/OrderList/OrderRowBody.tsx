@@ -3,6 +3,7 @@ import { OrderProductInfo } from './OrderProductInfo'
 import { OrderProcessingInfo } from './OrderProcessingInfo'
 import { OrderShippingInfo } from './OrderShippingInfo'
 import { OrderRowAction } from './OrderRowAction'
+import { useOrderListStyles } from './OrderList.style'
 import { ORDER_TABLE_COLUMNS } from '../../utils/tableColumns'
 import type { Order } from '../../types'
 
@@ -18,6 +19,7 @@ interface OrderRowBodyProps {
 }
 
 export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBodyProps) {
+  const { styles } = useOrderListStyles()
   const lastIdx = ORDER_TABLE_COLUMNS.length - 1
 
   const cell = (idx: number) => ({
@@ -27,20 +29,14 @@ export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBo
   })
 
   return (
-    <Flex
-      align="flex-start"
-      style={{
-        padding: 'var(--ant-padding) var(--ant-padding-lg)',
-        borderBottom: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)',
-        backgroundColor: 'var(--ant-color-bg-container)',
-      }}
-    >
-      <Flex align="flex-start" gap={8} style={cell(0)}>
-        <Checkbox
-          checked={selected}
-          onChange={(e) => onSelect(order.id, e.target.checked)}
-          style={{ flexShrink: 0, marginTop: 'var(--ant-padding-xxs)' }}
-        />
+    <div className={styles.rowBody}>
+      <Flex align="flex-start">
+        <Flex align="flex-start" gap={8} style={cell(0)}>
+          <Checkbox
+            checked={selected}
+            onChange={(e) => onSelect(order.id, e.target.checked)}
+            style={{ flexShrink: 0, marginTop: 4 }}
+          />
         <Flex vertical gap={8} style={{ flex: 1, minWidth: 0 }}>
           {order.items.map((item, idx) => (
             <OrderProductInfo key={idx} item={item} />
@@ -73,9 +69,10 @@ export function OrderRowBody({ order, selected, onSelect, onAction }: OrderRowBo
         <Typography.Text type="secondary">{order.recipient.province}</Typography.Text>
       </Flex>
 
-      <Flex justify="flex-start" style={cell(6)}>
-        <OrderRowAction orderId={order.id} onAction={onAction} />
+        <Flex justify="flex-start" style={cell(6)}>
+          <OrderRowAction orderId={order.id} onAction={onAction} />
+        </Flex>
       </Flex>
-    </Flex>
+    </div>
   )
 }

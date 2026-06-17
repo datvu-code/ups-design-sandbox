@@ -1,6 +1,7 @@
 import { Button, Divider, Flex } from 'antd'
 import { OrderSyncStatus } from './OrderSyncStatus'
 import { OrderExportActions } from './OrderExportActions'
+import { useOrderListStyles } from './OrderList.style'
 
 interface OrderListToolbarProps {
   lastSyncTime: string
@@ -15,22 +16,19 @@ export function OrderListToolbar({
   onViewHistory,
   onBulkProcess,
 }: OrderListToolbarProps) {
+  const { styles } = useOrderListStyles()
   return (
-    <Flex
-      justify="space-between"
-      align="center"
-      wrap
-      gap={12}
-      style={{ padding: 'var(--ant-padding-sm) var(--ant-padding-lg)' }}
-    >
-      <OrderSyncStatus lastSyncTime={lastSyncTime} onRefresh={onRefresh} />
-      <Flex align="center" gap={8} wrap>
-        <OrderExportActions onViewHistory={onViewHistory} />
-        <Divider vertical style={{ height: 24, margin: 0 }} />
-        <Button type="primary" onClick={onBulkProcess}>
-          Xử lý hàng loạt
-        </Button>
+    <div className={styles.toolbar}>
+      <Flex justify="space-between" align="center" wrap gap={12}>
+        <OrderSyncStatus lastSyncTime={lastSyncTime} onRefresh={onRefresh} />
+        <Flex align="center" gap={8} wrap>
+          <OrderExportActions onViewHistory={onViewHistory} />
+          <Divider vertical style={{ height: 24, margin: 0 }} />
+          <Button type="primary" onClick={onBulkProcess}>
+            Xử lý hàng loạt
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </div>
   )
 }

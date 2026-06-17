@@ -1,5 +1,6 @@
 import { Flex, Typography } from 'antd'
 import { IconChevronUp } from '@tabler/icons-react'
+import { useOrderCreateStyles } from './OrderCreate.style'
 
 const { Text } = Typography
 
@@ -12,17 +13,18 @@ interface SummaryRowProps {
 }
 
 function SummaryRow({ label, value, collapsible, muted, indent }: SummaryRowProps) {
+  const { styles } = useOrderCreateStyles()
   return (
     <Flex justify="space-between" align="center" style={{ paddingLeft: indent ? 12 : 0 }}>
       <Flex align="center" gap={4}>
         {collapsible && (
-          <IconChevronUp size={12} style={{ color: 'var(--ant-color-text-tertiary)' }} />
+          <IconChevronUp size={12} className={styles.infoIcon} />
         )}
-        <Text type={muted ? 'secondary' : undefined} style={{ fontSize: 'var(--ant-font-size-sm)' }}>
+        <Text type={muted ? 'secondary' : undefined} className={styles.summaryText}>
           {label}
         </Text>
       </Flex>
-      <Text type={muted ? 'secondary' : undefined} style={{ fontSize: 'var(--ant-font-size-sm)' }}>
+      <Text type={muted ? 'secondary' : undefined} className={styles.summaryText}>
         {value}
       </Text>
     </Flex>
@@ -30,6 +32,7 @@ function SummaryRow({ label, value, collapsible, muted, indent }: SummaryRowProp
 }
 
 export function OrderSummary() {
+  const { styles } = useOrderCreateStyles()
   return (
     <Flex vertical gap={6}>
       <SummaryRow label="Số lượng hàng hoá:" value="0" />
@@ -40,10 +43,8 @@ export function OrderSummary() {
       <SummaryRow label="Giảm giá bởi sàn:" value="–" indent muted />
       <SummaryRow label="Mã giảm giá:" value="0đ" collapsible />
       <Flex justify="space-between" align="center">
-        <Text style={{ color: 'var(--ant-color-primary)', fontSize: 'var(--ant-font-size-sm)' }}>
-          Mã giảm giá của shop:
-        </Text>
-        <Text type="secondary" style={{ fontSize: 'var(--ant-font-size-sm)' }}>~0%  0 đ</Text>
+        <Text className={styles.summaryPrimaryText}>Mã giảm giá của shop:</Text>
+        <Text type="secondary" className={styles.summaryText}>~0%  0 đ</Text>
       </Flex>
       <SummaryRow label="Mã giảm giá của sàn:" value="–" indent muted />
       <SummaryRow label="Phí vận chuyển phải trả:" value="0đ" collapsible />
@@ -54,13 +55,11 @@ export function OrderSummary() {
       <SummaryRow label="Xu đã sử dụng:" value="0đ" />
       <SummaryRow label="Điểm khách hàng thân thiết:" value="" collapsible />
       <Flex justify="space-between" align="center" style={{ paddingLeft: 12 }}>
-        <Text style={{ color: 'var(--ant-color-primary)', fontSize: 'var(--ant-font-size-sm)' }}>
-          Điểm quy đổi:
-        </Text>
-        <Text type="secondary" style={{ fontSize: 'var(--ant-font-size-sm)' }}>0 (0đ)</Text>
+        <Text className={styles.summaryPrimaryText}>Điểm quy đổi:</Text>
+        <Text type="secondary" className={styles.summaryText}>0 (0đ)</Text>
       </Flex>
       <SummaryRow label="Điểm tích luỹ:" value="+0" indent muted />
-      <div style={{ borderTop: 'var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary)', paddingTop: 8, marginTop: 4 }}>
+      <div className={styles.summaryDivider}>
         <Flex justify="space-between">
           <Text strong>Tổng tiền phải trả:</Text>
           <Text strong>0đ</Text>

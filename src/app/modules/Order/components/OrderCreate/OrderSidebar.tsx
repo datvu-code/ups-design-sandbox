@@ -1,5 +1,6 @@
 import { Checkbox, DatePicker, Flex, Input, Radio, Select, Typography } from 'antd'
 import { IconChevronDown } from '@tabler/icons-react'
+import { useOrderCreateStyles } from './OrderCreate.style'
 import type { OrderCodeMode, OrderCreateForm, StaffOption } from '../../types'
 
 interface OrderSidebarProps {
@@ -9,48 +10,30 @@ interface OrderSidebarProps {
   onFormChange: (patch: Partial<OrderCreateForm>) => void
 }
 
-const rowStyle: React.CSSProperties = {
-  marginBottom: 'var(--ant-margin)',
-}
-
-const labelStyle: React.CSSProperties = {
-  fontSize: 'var(--ant-font-size-sm)',
-  color: 'var(--ant-color-text)',
-  marginBottom: 8,
-  display: 'block',
-}
-
 export function OrderSidebar({
   form,
   salesStaffOptions,
   marketingStaffOptions,
   onFormChange,
 }: OrderSidebarProps) {
+  const { styles } = useOrderCreateStyles()
   return (
-    <div style={{
-      backgroundColor: 'var(--ant-color-bg-container)',
-      borderRadius: 'var(--ant-border-radius-lg)',
-      padding: 'var(--ant-padding-lg)',
-      position: 'sticky',
-      top: 16,
-    }}>
-      <Typography.Text strong style={{ display: 'block', fontSize: 'var(--ant-font-size-lg)', marginBottom: 'var(--ant-margin)' }}>
+    <div className={styles.sidebar}>
+      <Typography.Text strong className={styles.sectionTitle}>
         Thông tin đơn hàng
       </Typography.Text>
 
-      <div style={rowStyle}>
+      <div style={{ marginBottom: 16 }}>
         <Checkbox
           checked={form.isKocKol}
           onChange={(e) => onFormChange({ isKocKol: e.target.checked })}
         >
-          <Typography.Text style={{ fontSize: 'var(--ant-font-size-sm)' }}>
-            Đơn sản phẩm gửi KOC, KOL
-          </Typography.Text>
+          <Typography.Text>Đơn sản phẩm gửi KOC, KOL</Typography.Text>
         </Checkbox>
       </div>
 
-      <div style={rowStyle}>
-        <span style={labelStyle}>Nhân viên bán hàng</span>
+      <div style={{ marginBottom: 16 }}>
+        <span className={styles.formLabel}>Nhân viên bán hàng</span>
         <Select
           style={{ width: '100%' }}
           value={form.salesStaff}
@@ -61,8 +44,8 @@ export function OrderSidebar({
         />
       </div>
 
-      <div style={rowStyle}>
-        <span style={labelStyle}>Nhân viên marketing</span>
+      <div style={{ marginBottom: 16 }}>
+        <span className={styles.formLabel}>Nhân viên marketing</span>
         <Select
           style={{ width: '100%' }}
           placeholder="Chọn nhân viên marketing"
@@ -74,8 +57,8 @@ export function OrderSidebar({
         />
       </div>
 
-      <div style={rowStyle}>
-        <span style={labelStyle}>Ngày phát sinh đơn</span>
+      <div style={{ marginBottom: 16 }}>
+        <span className={styles.formLabel}>Ngày phát sinh đơn</span>
         <DatePicker
           style={{ width: '100%' }}
           showTime
@@ -84,8 +67,8 @@ export function OrderSidebar({
         />
       </div>
 
-      <div style={rowStyle}>
-        <span style={labelStyle}>Ngày dự kiến bàn giao ĐVVC</span>
+      <div style={{ marginBottom: 16 }}>
+        <span className={styles.formLabel}>Ngày dự kiến bàn giao ĐVVC</span>
         <DatePicker
           style={{ width: '100%' }}
           placeholder="Chọn"
@@ -94,8 +77,8 @@ export function OrderSidebar({
         />
       </div>
 
-      <div style={rowStyle}>
-        <span style={labelStyle}>UTM</span>
+      <div style={{ marginBottom: 16 }}>
+        <span className={styles.formLabel}>UTM</span>
         <Input
           value={form.utm}
           onChange={(e) => onFormChange({ utm: e.target.value })}
@@ -103,8 +86,8 @@ export function OrderSidebar({
         />
       </div>
 
-      <div style={rowStyle}>
-        <span style={labelStyle}>Mã đơn hàng</span>
+      <div style={{ marginBottom: 16 }}>
+        <span className={styles.formLabel}>Mã đơn hàng</span>
         <Radio.Group
           value={form.orderCodeMode}
           onChange={(e) => onFormChange({ orderCodeMode: e.target.value as OrderCodeMode })}

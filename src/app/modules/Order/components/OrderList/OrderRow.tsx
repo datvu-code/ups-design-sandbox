@@ -1,7 +1,7 @@
 import { OrderRowHeader } from './OrderRowHeader'
 import { OrderRowBody } from './OrderRowBody'
+import { useOrderListStyles } from './OrderList.style'
 import type { Order } from '../../types'
-import styles from './OrderRow.module.css'
 
 interface OrderRowProps {
   order: Order
@@ -11,8 +11,9 @@ interface OrderRowProps {
 }
 
 export function OrderRow({ order, selected, onSelect, onAction }: OrderRowProps) {
+  const { styles } = useOrderListStyles()
   return (
-    <div className={styles.card}>
+    <div className={styles.rowCard}>
       <OrderRowHeader
         order={{
           id: order.id,

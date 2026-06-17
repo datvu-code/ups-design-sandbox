@@ -1,5 +1,6 @@
 import { Badge, Flex, Typography } from 'antd'
 import { IconRefresh } from '@tabler/icons-react'
+import { useOrderListStyles } from './OrderList.style'
 
 interface OrderSyncStatusProps {
   lastSyncTime: string
@@ -7,6 +8,7 @@ interface OrderSyncStatusProps {
 }
 
 export function OrderSyncStatus({ lastSyncTime, onRefresh }: OrderSyncStatusProps) {
+  const { styles } = useOrderListStyles()
   return (
     <Flex align="center" gap={8}>
       <Badge status="success" />
@@ -15,11 +17,7 @@ export function OrderSyncStatus({ lastSyncTime, onRefresh }: OrderSyncStatusProp
       </Typography.Text>
       <Typography.Text type="secondary">•</Typography.Text>
       <Typography.Text type="secondary">{lastSyncTime}</Typography.Text>
-      <IconRefresh
-        size={14}
-        style={{ color: 'var(--ant-color-text-tertiary)', cursor: 'pointer' }}
-        onClick={onRefresh}
-      />
+      <IconRefresh size={14} className={styles.refreshIcon} onClick={onRefresh} />
     </Flex>
   )
 }

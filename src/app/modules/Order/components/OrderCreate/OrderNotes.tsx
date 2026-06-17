@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Flex, Input, Segmented, Select, Typography, Upload } from 'antd'
 import { IconPlus, IconChevronDown } from '@tabler/icons-react'
+import { useOrderCreateStyles } from './OrderCreate.style'
 import type { NoteType } from '../../types'
 
 interface OrderNotesProps {
@@ -25,28 +26,23 @@ export function OrderNotes({
   onTagsChange,
 }: OrderNotesProps) {
   const [uploadList] = useState([])
+  const { styles } = useOrderCreateStyles()
 
   return (
     <Flex gap={24}>
       <Flex vertical gap={8} style={{ flex: '0 0 120px' }}>
-        <Typography.Text type="secondary" style={{ fontSize: 'var(--ant-font-size-sm)' }}>
-          Đính kèm
-        </Typography.Text>
+        <Typography.Text type="secondary">Đính kèm</Typography.Text>
         <Upload fileList={uploadList} listType="picture-card" showUploadList={false}>
           <Flex vertical align="center" gap={4}>
-            <IconPlus size={14} style={{ color: 'var(--ant-color-text-tertiary)' }} />
-            <Typography.Text style={{ fontSize: 'var(--ant-font-size-sm)', color: 'var(--ant-color-text-secondary)' }}>
-              Tải file lên
-            </Typography.Text>
+            <IconPlus size={14} className={styles.uploadIcon} />
+            <Typography.Text className={styles.uploadLabel}>Tải file lên</Typography.Text>
           </Flex>
         </Upload>
       </Flex>
 
       <Flex vertical gap={8} style={{ flex: 1 }}>
         <Flex align="center" justify="space-between">
-          <Typography.Text type="secondary" style={{ fontSize: 'var(--ant-font-size-sm)' }}>
-            Ghi chú
-          </Typography.Text>
+          <Typography.Text type="secondary">Ghi chú</Typography.Text>
           <Segmented
             size="small"
             value={noteType}
@@ -65,23 +61,12 @@ export function OrderNotes({
             placeholder="Nhập ghi chú"
             rows={4}
           />
-          <Typography.Text
-            type="secondary"
-            style={{
-              position: 'absolute',
-              right: 8,
-              bottom: 8,
-              fontSize: 'var(--ant-font-size-sm)',
-              pointerEvents: 'none',
-            }}
-          >
+          <Typography.Text type="secondary" className={styles.noteCharCount}>
             {note.length}/{NOTE_MAX}
           </Typography.Text>
         </div>
 
-        <Typography.Text type="secondary" style={{ fontSize: 'var(--ant-font-size-sm)' }}>
-          Tag
-        </Typography.Text>
+        <Typography.Text type="secondary">Tag</Typography.Text>
         <Select
           mode="multiple"
           value={tags}

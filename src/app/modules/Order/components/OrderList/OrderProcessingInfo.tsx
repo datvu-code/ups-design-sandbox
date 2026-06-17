@@ -1,13 +1,14 @@
 import { Flex, Typography, Tooltip } from 'antd'
 import { IconInfoCircle } from '@tabler/icons-react'
+import { useOrderListStyles } from './OrderList.style'
 import type { OrderProcessing } from '../../types'
-import styles from './OrderProcessingInfo.module.css'
 
 interface OrderProcessingInfoProps {
   processing: OrderProcessing
 }
 
 export function OrderProcessingInfo({ processing }: OrderProcessingInfoProps) {
+  const { styles } = useOrderListStyles()
   return (
     <Flex vertical gap={4}>
       {processing.deadline && (

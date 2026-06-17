@@ -1,6 +1,7 @@
 import { Button, Dropdown, Flex, Typography } from 'antd'
 import { IconChevronDown } from '@tabler/icons-react'
 import { OrderSortControl } from './OrderSortControl'
+import { useOrderListStyles } from './OrderList.style'
 import type { MenuProps } from 'antd'
 
 const bulkActionItems: MenuProps['items'] = [
@@ -24,30 +25,27 @@ export function OrderBulkActionBar({
   onSortByChange,
   onDirectionChange,
 }: OrderBulkActionBarProps) {
+  const { styles } = useOrderListStyles()
   return (
-    <Flex
-      justify="space-between"
-      align="center"
-      wrap
-      gap={12}
-      style={{ padding: 'var(--ant-padding-xs) var(--ant-padding-lg)' }}
-    >
-      <Flex align="center" gap={12}>
-        <Dropdown menu={{ items: bulkActionItems }} trigger={['click']} disabled={selectedCount === 0}>
-          <Button disabled={selectedCount === 0}>
-            Thao tác hàng loạt <IconChevronDown size={14} />
-          </Button>
-        </Dropdown>
-        <Typography.Text type="secondary">
-          Đã chọn: {selectedCount} kiện hàng
-        </Typography.Text>
+    <div className={styles.bulkBar}>
+      <Flex justify="space-between" align="center" wrap gap={12}>
+        <Flex align="center" gap={12}>
+          <Dropdown menu={{ items: bulkActionItems }} trigger={['click']} disabled={selectedCount === 0}>
+            <Button disabled={selectedCount === 0}>
+              Thao tác hàng loạt <IconChevronDown size={14} />
+            </Button>
+          </Dropdown>
+          <Typography.Text type="secondary">
+            Đã chọn: {selectedCount} kiện hàng
+          </Typography.Text>
+        </Flex>
+        <OrderSortControl
+          sortBy={sortBy}
+          sortDirection={sortDirection}
+          onSortByChange={onSortByChange}
+          onDirectionChange={onDirectionChange}
+        />
       </Flex>
-      <OrderSortControl
-        sortBy={sortBy}
-        sortDirection={sortDirection}
-        onSortByChange={onSortByChange}
-        onDirectionChange={onDirectionChange}
-      />
-    </Flex>
+    </div>
   )
 }

@@ -1,6 +1,5 @@
 import { Button, Flex, Select, Typography } from 'antd'
 import { IconChevronDown, IconSortAscending, IconSortDescending } from '@tabler/icons-react'
-import styles from './OrderSortControl.module.css'
 
 const chevron = <IconChevronDown size={14} />
 
@@ -36,14 +35,14 @@ export function OrderSortControl({
         style={{ width: 200 }}
       />
       <Button
+        type={sortDirection === 'asc' ? 'primary' : 'default'}
         icon={<IconSortAscending size={16} />}
         onClick={() => onDirectionChange('asc')}
-        className={sortDirection === 'asc' ? styles.btnActive : ''}
       />
       <Button
+        type={sortDirection === 'desc' ? 'primary' : 'default'}
         icon={<IconSortDescending size={16} />}
         onClick={() => onDirectionChange('desc')}
-        className={sortDirection === 'desc' ? styles.btnActive : ''}
       />
     </Flex>
   )

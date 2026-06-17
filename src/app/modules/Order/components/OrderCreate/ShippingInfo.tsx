@@ -1,18 +1,15 @@
 import { Button, Flex, Typography } from 'antd'
 import { IconPlus } from '@tabler/icons-react'
-
-const sectionStyle: React.CSSProperties = {
-  backgroundColor: 'var(--ant-color-bg-container)',
-  borderRadius: 'var(--ant-border-radius-lg)',
-  padding: 'var(--ant-padding-lg)',
-  marginBottom: 'var(--ant-margin)',
-}
+import { useOrderCreateStyles } from './OrderCreate.style'
 
 export function ShippingInfo() {
+  const { styles } = useOrderCreateStyles()
   return (
-    <div style={sectionStyle}>
+    <div className={styles.section}>
       <Flex justify="space-between" align="center">
-        <Typography.Text strong style={{ fontSize: 'var(--ant-font-size-lg)' }}>Thông tin vận chuyển</Typography.Text>
+        <Typography.Text strong className={styles.sectionTitle} style={{ marginBottom: 0 }}>
+          Thông tin vận chuyển
+        </Typography.Text>
         <Button type="primary" icon={<IconPlus size={14} />}>
           Thêm vận chuyển
         </Button>
